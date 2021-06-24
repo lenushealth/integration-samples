@@ -1,0 +1,23 @@
+﻿@using System.IdentityModel.Tokens.Jwt
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>My Blood Pressure</h1>
+    <p>This is a sample application using the Lenus health platform to retrieve blood pressure measurements for a connected user</p>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>
+            <a class="btn btn-primary btn-lg" role="button" asp-action="Index" asp-controller="Query"><i class="glyphicon glyphicon-search"></i> Query data</a>
+            <a class="btn btn-primary btn-lg" role="button" asp-action="Index" asp-controller="Submit"><i class="glyphicon glyphicon-plus"></i>Submit data</a>
+        </p>
+    }
+    else
+    {
+        <p>
+            <a class="btn btn-primary btn-lg" role="button" asp-action="Login" asp-controller="Home"><i class="glyphicon glyphicon-log-in"></i> Login</a>
+        </p>
+    }
+</div>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<string>
+
+@{
+    var types = new[] { "blood_pressure", "blood_pressure_diastolic", "blood_pressure_systolic" };
+    var selected = Model ?? Enumerable.Empty<string>();
+}
+
+@foreach (var item in types)
+{
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="@Html.NameForModel()" value="@item" @(selected.Contains(item) ? "checked=\"checked\"" : "") /> @item
+        </label>
+    </div>
+}
+

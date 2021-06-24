@@ -1,0 +1,23 @@
+﻿@using MyBp.Models
+@model IEnumerable<BloodPressureSampleModel>
+    
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Reading</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => item.From)</td>
+            <td>
+
+                <div health-diastolic="@item.Diastolic" health-systolic="@item.Systolic" health-unit="mmHg"></div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

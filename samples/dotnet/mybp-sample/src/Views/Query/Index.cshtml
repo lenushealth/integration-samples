@@ -1,0 +1,80 @@
+﻿@using MyBp.Models
+@model HealthDataQueryRequest
+
+<form method="post">
+    <fieldset class="row">
+        <div class="col-lg-4">
+            <legend class="legend">
+                Types
+            </legend>
+        </div>
+        <div class="col-lg-8">
+            <div class="form-group">
+                @Html.EditorFor(m => m.Types)
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row push-double--bottom">
+        <div class="col-lg-4">
+            <legend class="legend">
+                Range of start date
+            </legend>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label asp-for="RangeOfStartDate.LowerBound"></label>
+                <input asp-for="RangeOfStartDate.LowerBound" class="form-control" />
+                <span asp-validation-for="RangeOfStartDate.LowerBound"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RangeOfStartDate.UpperBound"></label>
+                <input asp-for="RangeOfStartDate.UpperBound" class="form-control" />
+                <span asp-validation-for="RangeOfStartDate.UpperBound"></span>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row push-double--bottom">
+        <div class="col-lg-4">
+            <legend class="legend">
+                Range of end date (optional)
+            </legend>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label asp-for="RangeOfEndDate.LowerBound"></label>
+                <input asp-for="RangeOfEndDate.LowerBound" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="RangeOfEndDate.UpperBound"></label>
+                <input asp-for="RangeOfEndDate.UpperBound" class="form-control" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row push-double--bottom">
+        <div class="col-lg-4">
+            <legend class="legend">
+                Range of creation date (optional)
+            </legend>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label asp-for="RangeOfCreationDate.LowerBound"></label>
+                <input asp-for="RangeOfCreationDate.LowerBound" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="RangeOfCreationDate.UpperBound"></label>
+                <input asp-for="RangeOfCreationDate.UpperBound" class="form-control" />
+            </div>
+        </div>
+    </fieldset>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

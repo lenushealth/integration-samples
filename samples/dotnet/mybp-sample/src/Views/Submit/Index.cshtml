@@ -1,0 +1,26 @@
+﻿@using MyBp.Models
+@model BloodPressureSampleSubmitModel
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="From"></label>
+        <input asp-for="From" class="form-control" />
+        <span asp-validation-for="From"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Systolic"></label>
+        <input asp-for="Systolic" class="form-control" />
+        <span asp-validation-for="Diastolic"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Diastolic"></label>
+        <input asp-for="Diastolic" class="form-control" />
+        <span asp-validation-for="Systolic"></span>
+    </div>
+    <button type="submit" class="btn btn-default">Send</button>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
