@@ -4,14 +4,19 @@ on:
   push:
     branches: [ main ]
     paths:
+      - '.github/workflows/dotnet-mybp-sample.yml'
       - 'samples/dotnet/mybp-sample**'
   pull_request:
     branches: [ main ]
     paths:
+      - '.github/workflows/dotnet-mybp-sample.yml'
       - 'samples/dotnet/mybp-sample**'
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: samples/dotnet/mybp-sample
 
     runs-on: ubuntu-latest
 
