@@ -16,7 +16,6 @@ jobs:
   build:
     defaults:
       run:
-        shell: bash
         working-directory: samples/dotnet/clinician-sample
         
     runs-on: ubuntu-latest
