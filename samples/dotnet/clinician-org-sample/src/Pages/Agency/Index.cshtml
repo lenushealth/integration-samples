@@ -1,0 +1,14 @@
+﻿@page
+@model Lenus.Samples.ClinicianOrg.Pages.Invite.IndexModel
+
+@if (!Model.Submitted)
+{
+    <form method="post">
+        @Html.EditorFor(m => m.Form)
+        <input type="submit" value="Invite" />
+    </form>
+}
+else
+{
+    <p>Agency invite submitted</p>
+}
