@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 using Lenus.Samples.ClinicianOrg.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lenus.Samples.ClinicianOrg.Pages.Invite
 {
     public class IndexModel : PageModel
     {
         private readonly IAgencyInviteService agencyInviteService;
+        private readonly IOrganisationMembershipService organisationMembershipService;
 
         [Display(Description = "Request access to specific patient health data types")]
         public class Model : IValidatableObject
@@ -30,8 +32,8 @@ namespace Lenus.Samples.ClinicianOrg.Pages.Invite
             [Required]
             public string? Scopes { get; set; }
 
-            [BindProperty]
-            [Display(Name = "Organisation Id", Description = "(Optional) If a known organisation reference is supplied then the consent request will be made on behalf of the organisation, otherwise consent is requested only for the individual agent", Prompt = "00000000-0000-0000-0000-000000000000")]
+            [DataType("OrganisationSelect")]
+            [Display(Name = "Organisation", Description = "(Optional) If a known organisation reference is supplied then the consent request will be made on behalf of the organisation, otherwise consent is requested only for the individual agent", Prompt = "00000000-0000-0000-0000-000000000000")]
             public Guid? OrganisationId { get; set; }
 
             [ScaffoldColumn(false)]
@@ -62,7 +64,7 @@ namespace Lenus.Samples.ClinicianOrg.Pages.Invite
         {
         }
 
-        public async Task OnPost(CancellationToken cancellationToken)
+        public async Task OnPostAsync(CancellationToken cancellationToken)
         {
             if(ModelState.IsValid)
             {

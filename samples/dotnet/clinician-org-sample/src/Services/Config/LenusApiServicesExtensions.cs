@@ -4,9 +4,9 @@ using Microsoft.Extensions.Options;
 
 namespace Lenus.Samples.ClinicianOrg.Services.Config
 {
-    public static class AgencyServicesExtensions
+    public static class LenusApiServicesExtensions
     {
-        public static IServiceCollection AddAgencyServices(this IServiceCollection services)
+        public static IServiceCollection AddLenusApiServices(this IServiceCollection services)
         {
             services.AddHttpContextAccessor();
             services.AddSingleton<IAccessTokenProvider, AccessTokenProvider>();
@@ -17,6 +17,9 @@ namespace Lenus.Samples.ClinicianOrg.Services.Config
                 });
             services.AddSingleton<IConfigureOptions<AgencyOptions>, ConfigureAgencyOptions>();
             services.AddScoped<IAgencyInviteService, BasicAgencyInviteService>();
+
+            services.AddSingleton<IConfigureOptions<OrganisationsOptions>, ConfigureOrganisationsOptions>();
+            services.AddScoped<IOrganisationMembershipService, OrganisationMembershipService>();
 
             return services;
         }

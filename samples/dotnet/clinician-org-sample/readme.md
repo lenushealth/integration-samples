@@ -1,6 +1,6 @@
 # Clinician Agency API Sample
 
-Sample implementation of the Lenus Health platform demonstrating use of the agency APIs to request access to a patient's health data.
+Sample implementation of the Lenus Health platform demonstrating use of the agency APIs to request access to a patient's health data either for an individual agent or for an entire organisation.
 
 ## Requirements
 
@@ -36,6 +36,9 @@ Included in the sample is an `appsettings.json` file, within this file you will 
       },
       "Agency": {
         "BaseApiUri": "https://<platform-api-host>/agency/v1"
+      },
+      "Organisations": {
+        "BaseApiUri": "https://<platform-api-host>/organizations/v1"
       }
     }
   }

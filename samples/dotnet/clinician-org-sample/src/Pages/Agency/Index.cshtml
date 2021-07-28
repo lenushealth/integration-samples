@@ -1,16 +1,15 @@
 ﻿@page
 @model Lenus.Samples.ClinicianOrg.Pages.Invite.IndexModel
 
-@if (!Model.Submitted)
+@if (Model.Submitted)
 {
-	<form method="post" asp-antiforgery="true">
-		@Html.EditorFor(m => m.Form)
-	 <div class="form-row mt-3">
-	  <input type="submit" value="Invite" />
-	 </div>
-	</form>
+	<div class="alert alert-success p-3" role="alert">
+		Agency invite sent
+	</div>
 }
-else
-{
-	<p>Agency invite submitted</p>
-}
+<form method="post" asp-antiforgery="true">
+	@Html.EditorFor(m => m.Form)
+ <div class="form-row mt-3">
+  <input class="btn btn-primary" type="submit" value="Invite" />
+ </div>
+</form>

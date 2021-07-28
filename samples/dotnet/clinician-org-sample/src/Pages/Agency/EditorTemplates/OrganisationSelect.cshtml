@@ -1,0 +1,16 @@
+﻿@using Lenus.Samples.ClinicianOrg.Services
+@model Guid?
+@inject IOrganisationMembershipService OrganisationMembershipService
+@{
+	var orgMemberships = await OrganisationMembershipService.Retrieve();
+	var memberships = orgMemberships.Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Name }).ToList();
+}
+
+<div class="form-group">
+	<label asp-for="@Model"></label>
+	<select asp-for="@Model" asp-items="memberships" class="form-control" aria-describedby="@Html.IdForModel()">
+		<option value="">- None -</option>
+	</select>
+	<partial name="_DisplayHelpText" />
+	<span asp-validation-for="@Model"></span>
+</div>

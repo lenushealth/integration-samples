@@ -36,7 +36,7 @@ namespace Lenus.Samples.ClinicianOrg
                 o.Conventions.AllowAnonymousToFolder("/Patient");
             });
 
-            services.AddAgencyServices();
+            services.AddLenusApiServices();
             services.AddLenusAuthentication(Configuration);
             services.AddLenusAuthorisation();
         }
