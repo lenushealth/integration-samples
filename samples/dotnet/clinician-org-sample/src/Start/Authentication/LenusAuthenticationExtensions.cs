@@ -20,7 +20,7 @@ namespace Lenus.Samples.ClinicianOrg.Start.Authentication
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            serviceCollection
+            _ = serviceCollection
                 .AddScoped<IClaimsTransformation, IdentityClaimsTransformation>()
                 .AddAuthentication(o =>
                 {
@@ -38,7 +38,7 @@ namespace Lenus.Samples.ClinicianOrg.Start.Authentication
                     o.SaveTokens = true;
                     /* match token and cookie lifetime */
                     o.UseTokenLifetime = true;
-                    
+
                     o.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     o.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
@@ -50,7 +50,7 @@ namespace Lenus.Samples.ClinicianOrg.Start.Authentication
                     o.Events.OnRemoteFailure += ctx =>
                     {
                         ctx.Response.Redirect($"/?error={ctx?.Failure?.Message}");
-                        ctx.HandleResponse();
+                        ctx?.HandleResponse();
                         return Task.CompletedTask;
                     };
 
@@ -59,9 +59,6 @@ namespace Lenus.Samples.ClinicianOrg.Start.Authentication
 
                     /* I want profile information (givenname, familyname) */
                     o.Scope.Add("profile");
-
-                    /* I want to read email address */
-                    o.Scope.Add("email");
 
                     /* I want to access APIs associated with consent and agency over another user's data */
                     o.Scope.Add("agency_api");

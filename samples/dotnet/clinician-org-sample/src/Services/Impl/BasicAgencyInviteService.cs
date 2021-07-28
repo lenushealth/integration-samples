@@ -24,7 +24,7 @@ namespace Lenus.Samples.ClinicianOrg.Services.Impl
             this.agencyOptions = agencyOptions.Value;
         }
 
-        public async Task SendInvite(string? emailAddress, string? mobileNumber, IEnumerable<string> scopes, string? organisationId, CancellationToken cancellationToken)
+        public async Task SendInvite(string? emailAddress, string? mobileNumber, IEnumerable<string> scopes, Guid? organisationId, CancellationToken cancellationToken)
         {
             var agencyRequest = new
             {
@@ -43,7 +43,7 @@ namespace Lenus.Samples.ClinicianOrg.Services.Impl
             
             if(!response.IsSuccessStatusCode)
             {
-                var errorResponse = await response.Content.ReadAsStringAsync();
+                var errorResponse = await response.Content.ReadAsStringAsync(cancellationToken);
                 logger.LogError($"Failed ({response.StatusCode}) : {errorResponse}");
             }
             response.EnsureSuccessStatusCode();

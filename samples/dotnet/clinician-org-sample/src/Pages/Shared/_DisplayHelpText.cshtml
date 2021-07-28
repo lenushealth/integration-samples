@@ -1,0 +1,13 @@
+﻿@model object
+
+@{
+	var helpText = this.ViewData.ModelMetadata.Description;
+	var hasHelpText = !string.IsNullOrWhiteSpace(helpText);
+}
+
+@if (hasHelpText)
+{
+	<small id="@Html.IdForModel()" class="form-text text-muted">
+		@helpText
+	</small>
+}

@@ -3,12 +3,14 @@
 
 @if (!Model.Submitted)
 {
-    <form method="post">
-        @Html.EditorFor(m => m.Form)
-        <input type="submit" value="Invite" />
-    </form>
+	<form method="post" asp-antiforgery="true">
+		@Html.EditorFor(m => m.Form)
+	 <div class="form-row mt-3">
+	  <input type="submit" value="Invite" />
+	 </div>
+	</form>
 }
 else
 {
-    <p>Agency invite submitted</p>
+	<p>Agency invite submitted</p>
 }

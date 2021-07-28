@@ -19,7 +19,6 @@ namespace Lenus.Samples.ClinicianOrg.Pages
 
         public void OnGet()
         {
-
         }
     }
 }
