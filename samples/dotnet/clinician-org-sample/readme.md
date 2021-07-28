@@ -15,6 +15,7 @@ Sample implementation of the Lenus Health platform demonstrating use of the agen
 
 Login to your developer portal account and create a new client application.  The client application will require the following configuration:
 
+- Client URI `https://localhost:5001` (this URI must point to your application as it is used by `browserRedirectPath` and `clientNotifyPath` as mentioned in our developer documentation)
 - RedirectUri: `https://localhost:5001/signin-oidc` (this may differ if you have altered the app launch settings)
 - Grant Type: `hybrid`
 - Basic Scopes: `openid profile email agency_api`
@@ -43,3 +44,7 @@ Included in the sample is an `appsettings.json` file, within this file you will 
 ## Building and Running
 
 Open the solution either your editor or IDE of choice, or use the command line:
+
+## Purpose
+
+Once authenticated as an "Agent", you can complete the agency request form, this will use the agency API to create an agency invite and notify the patient via email and/or sms, when the patient uses the invitation link and completes the acceptance journey they will be redirected back to `/Patient/Redirect`, configured as the `browserRedirectPath`.  Additionally a callback is made to `/Agency/Complete` to inform your application that the agency request was accepted.

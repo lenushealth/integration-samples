@@ -6,6 +6,7 @@ using Lenus.Samples.ClinicianOrg.Config;
 using Lenus.Samples.ClinicianOrg.Services;
 using Lenus.Samples.ClinicianOrg.Services.Config;
 using Lenus.Samples.ClinicianOrg.Start.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -75,7 +76,7 @@ namespace Lenus.Samples.ClinicianOrg
                     ctx.Response.StatusCode = 204;
 
                     return Task.CompletedTask;
-                }).AllowAnonymous();
+                }).WithMetadata(new AllowAnonymousAttribute());
 
                 endpoints.MapRazorPages();
             });

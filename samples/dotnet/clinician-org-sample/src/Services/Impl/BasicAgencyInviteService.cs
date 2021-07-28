@@ -43,7 +43,7 @@ namespace Lenus.Samples.ClinicianOrg.Services.Impl
             
             if(!response.IsSuccessStatusCode)
             {
-                var errorResponse = await response.Content.ReadAsStringAsync(cancellationToken);
+                var errorResponse = await response.Content.ReadAsStringAsync();
                 logger.LogError($"Failed ({response.StatusCode}) : {errorResponse}");
             }
             response.EnsureSuccessStatusCode();
