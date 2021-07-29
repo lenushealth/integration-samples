@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "zipper": {
+      "version": "1.0.1",
+      "commands": [
+        "zipper"
+      ]
+    },
+    "dotnet-rimraf": {
+      "version": "1.2.4",
+      "commands": [
+        "rimraf"
+      ]
+    }
+  }
+}
