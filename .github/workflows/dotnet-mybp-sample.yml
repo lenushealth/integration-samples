@@ -5,18 +5,18 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/dotnet-mybp-sample.yml'
-      - 'samples/dotnet/mybp-sample**'
+      - 'samples/dotnet/mybp**'
   pull_request:
     branches: [ main ]
     paths:
       - '.github/workflows/dotnet-mybp-sample.yml'
-      - 'samples/dotnet/mybp-sample**'
+      - 'samples/dotnet/mybp**'
 
 jobs:
   build:
     defaults:
       run:
-        working-directory: samples/dotnet/mybp-sample
+        working-directory: samples/dotnet/mybp
 
     runs-on: ubuntu-latest
 
@@ -26,6 +26,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
+    - name: Restore tools
+      run: dotnet tool restore
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
