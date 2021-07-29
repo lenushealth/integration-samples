@@ -13,9 +13,6 @@ namespace Lenus.Samples.ClinicianOrg.Pages.Invite
 {
     public class IndexModel : PageModel
     {
-        private readonly IAgencyInviteService agencyInviteService;
-        private readonly IOrganisationMembershipService organisationMembershipService;
-
         [Display(Description = "Request access to specific patient health data types")]
         public class Model : IValidatableObject
         {
@@ -47,6 +44,8 @@ namespace Lenus.Samples.ClinicianOrg.Pages.Invite
                 }
             }
         }
+
+        private readonly IAgencyInviteService agencyInviteService;
 
         [BindProperty]
         [UIHint("Form")]
