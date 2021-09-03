@@ -10,13 +10,18 @@ Sample implementation of the Lenus Health platform to retrieve and submit blood 
 
 # Creating a client application
 
-Register and/or login to your account and create a new client application.  The client application will be required to use the following configuration:
+Register and/or login to your account and create a new client application.  The client application will be required to use the following configuration and scopes:
 
 - RedirectUri: `https://localhost:5001/signin-oidc`
 - Grant Type: `hybrid`
 - Basic Scopes: `openid profile email`
 - Correlation Scopes: `read.blood_pressure write.blood_pressure`
 - Vitals Quantity Scopes: `read.blood_pressure.blood_pressure_diastolic read.blood_pressure.blood_pressure_systolic write.blood_pressure.blood_pressure_diastolic write.blood_pressure.blood_pressure_systolic`
+
+Blood pressure scopes are provided within the developer portal via the "Blood Pressure" read and write checkboxes, under the hood this will include the scopes as described above.
+
+![image](https://user-images.githubusercontent.com/432217/132019991-0eabf9d9-f364-4e8c-aa23-d5fd1d52a8aa.png)
+
 
 Set a known `client secret` value
 
