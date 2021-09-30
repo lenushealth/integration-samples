@@ -13,7 +13,7 @@ A sample clinician app that demonstrates requesting agency for another users and
 Visit the developer portal for your assigned environment, register and/or login to your account and create a new client application.  The client application will be required to use the following configuration:
 
 - RedirectUri: `https://localhost:5001/signin-oidc`
-- Grant Type: `authorization code`
+- Grant Type: `hybrid`
 - Basic Scopes: `openid`, `profile`, `email`, `agency_api`
 - Correlation Scopes: `read.blood_pressure`
 - Body Quantity Scopes: `read.height`, `read.body_mass`
