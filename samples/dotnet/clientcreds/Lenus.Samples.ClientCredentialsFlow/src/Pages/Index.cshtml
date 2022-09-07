@@ -1,0 +1,13 @@
+﻿@page
+@model Lenus.Samples.ClientCredentialsFlow.Pages.IndexModel
+@{
+}
+
+<form method="post" asp-antiforgery="true">
+	@Html.EditorFor(m => m.Form)
+ <div class="form-row mt-3">
+	<input class="btn btn-primary" type="submit" />
+ </div>
+ 	@Html.AntiForgeryToken();
+</form>
+
