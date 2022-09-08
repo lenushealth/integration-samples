@@ -14,6 +14,8 @@ builder.Services.AddSingleton<IConfigureOptions<LenusClientOptions>, ConfigureCl
 
 builder.Services.AddSingleton<AuthHeaderHandler, AuthHeaderHandler>();
 
+builder.Services.AddHttpClient("AuthTokenProvider");
+
 builder.Services.AddRefitClient<IAgencyInviteService>()
     .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["Lenus:Agency:BaseApiUri"]))
     .AddHttpMessageHandler<AuthHeaderHandler>();
