@@ -1,7 +1,7 @@
-﻿namespace Lenus.Samples.ClientCredentialsFlow.Services.Agency.Models
-{
-    using Refit;
+﻿using Refit;
 
+namespace Lenus.Samples.ClientCredentialsFlow.Services.Agency.Models
+{
     public interface IAgencyInviteService
     {
 

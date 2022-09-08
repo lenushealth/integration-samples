@@ -1,6 +1,7 @@
-﻿namespace Lenus.Samples.ClientCredentialsFlow.Configuration
+﻿using Microsoft.Extensions.Options;
+
+namespace Lenus.Samples.ClientCredentialsFlow.Configuration
 {
-    using Microsoft.Extensions.Options;
     public class ConfigureAgencyOptions : IConfigureOptions<AgencyOptions>
     {
         private readonly IConfiguration configuration;

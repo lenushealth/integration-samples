@@ -1,9 +1,10 @@
-﻿namespace Lenus.Samples.ClientCredentialsFlow.Services.Agency.Authentication
+﻿using IdentityModel.Client;
+using Lenus.Samples.ClientCredentialsFlow.Configuration;
+using Microsoft.Extensions.Options;
+using System.Net.Http.Headers;
+
+namespace Lenus.Samples.ClientCredentialsFlow.Services.Agency.Authentication
 {
-    using IdentityModel.Client;
-    using Lenus.Samples.ClientCredentialsFlow.Configuration;
-    using Microsoft.Extensions.Options;
-    using System.Net.Http.Headers;
     class AuthHeaderHandler : DelegatingHandler
     {
         private readonly IOptions<LenusClientOptions> clientOptions;
