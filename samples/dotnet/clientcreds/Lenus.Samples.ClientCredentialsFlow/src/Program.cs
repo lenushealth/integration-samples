@@ -3,7 +3,6 @@ using Lenus.Samples.ClientCredentialsFlow.Services.Agency.Authentication;
 using Refit;
 using Lenus.Samples.ClientCredentialsFlow.Configuration;
 using Microsoft.Extensions.Options;
-using Lenus.Samples.ClientCredentialsFlow.Services.Organisations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +17,6 @@ builder.Services.AddHttpClient("AuthTokenProvider");
 
 builder.Services.AddRefitClient<IAgencyInviteService>()
     .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["Lenus:Agency:BaseApiUri"]))
-    .AddHttpMessageHandler<AuthHeaderHandler>();
-
-builder.Services.AddRefitClient<IOrganisationApiService>()
-    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["Lenus:Organisations:BaseApiUri"]))
     .AddHttpMessageHandler<AuthHeaderHandler>();
 
 var app = builder.Build();
