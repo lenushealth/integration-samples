@@ -41,7 +41,7 @@ Additionally in your secrets file you will need to add your client secret:
 
 ## Testing the project
 
-Once the project is running a simple UI will be launched providing inputs for an email, phone number, and requested scopes. Submitting this form will make a request to send agency invite via the sandbox identity platform, you will see emails come through via sandbox sparkpost.
+Once the project is running a simple UI will be launched providing inputs for an email, phone number, and requested scopes. Submitting this form will make a request to send agency invite via the sandbox identity platform, you will see invite emails come through.
 
 
 
