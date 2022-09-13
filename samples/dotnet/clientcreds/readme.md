@@ -12,7 +12,7 @@ You will need to set up a client via the developer portal configured to use the 
 
 For this solution only agency_api scope is required.
 
-Once you have set up your client you will need contact Lenus support and ask us to enable an organisation for the client you created. The id of this organisation is required when sending an agency invite.
+Once you have set up your client you will need to contact Lenus support and ask us to enable an organisation for the client you created. The id of this organisation is required when sending an agency invite.
 
 After creating your client replace the values in appsettings:
 
