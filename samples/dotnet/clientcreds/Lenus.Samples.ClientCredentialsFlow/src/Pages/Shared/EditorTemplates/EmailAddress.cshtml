@@ -1,0 +1,17 @@
+﻿@model string
+
+@{
+	var helpText = this.ViewData.ModelMetadata.Description;
+	var label = this.ViewData.ModelMetadata.Name;
+}
+
+
+<div class="form-group">
+	<label asp-for="@Model">@label</label>
+	<input id="@Model" asp-for="@Model" class="form-control" />
+	<small class="form-text text-muted">
+		@helpText
+		@Model
+	</small>
+	<span asp-validation-for="@Model"></span>
+</div>

@@ -11,7 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IConfigureOptions<AgencyOptions>, ConfigureAgencyOptions>();
 builder.Services.AddSingleton<IConfigureOptions<LenusClientOptions>, ConfigureClientOptions>();
 
-builder.Services.AddSingleton<AuthHeaderHandler, AuthHeaderHandler>();
+builder.Services.AddTransient<AuthHeaderHandler, AuthHeaderHandler>();
 
 builder.Services.AddHttpClient("AuthTokenProvider");
 

@@ -25,10 +25,6 @@ namespace Lenus.Samples.ClientCredentialsFlow.Pages
             [Required]
             public string Scopes { get; set; } = String.Empty;
 
-            [DataType("OrganisationId")]
-            [Display(Name = "Organisation", Description = "(Optional) If a known organisation reference is supplied then the consent request will be made on behalf of the organisation, otherwise consent is requested only for the individual agent", Prompt = "00000000-0000-0000-0000-000000000000")]
-            public string OrganisationId { get; set; } = String.Empty;
-
             [ScaffoldColumn(false)]
             public IEnumerable<string> ScopesList => Scopes?.Split(Environment.NewLine) ?? Enumerable.Empty<string>();
 
@@ -67,7 +63,7 @@ namespace Lenus.Samples.ClientCredentialsFlow.Pages
         {
             if (ModelState.IsValid)
             {
-                var request = new AgencyInviteRequest(Form.EmailAddress, Form.MobileNumber, Form.ScopesList, Form.OrganisationId, agencyOptions.Value.ClientNotifyPath, agencyOptions.Value.BrowserRedirectPath);
+                var request = new AgencyInviteRequest(Form.EmailAddress, Form.MobileNumber, Form.ScopesList, agencyOptions.Value.OrganisationId, agencyOptions.Value.ClientNotifyPath, agencyOptions.Value.BrowserRedirectPath);
                 var response = await agencyInviteService.SendInvite(request, cancellationToken);
                 if(response.IsSuccessStatusCode)
                 {

@@ -1,0 +1,21 @@
+﻿@model Lenus.Samples.ClientCredentialsFlow.Pages.IndexModel.Model
+
+<div>
+	<h1 class="display-5">
+		@this.ViewData.ModelMetadata.Description
+	</h1>
+</div>
+<div class="row">
+	<div class="col-8 col-sm-12">
+		<fieldset>
+			<legend>Consent Details</legend>
+			@Html.EditorFor(m => m.Scopes, Model.Scopes)
+		</fieldset>
+
+		<fieldset>
+			<legend>Contact Details</legend>
+			@Html.EditorFor(m => m.EmailAddress, Model.EmailAddress)
+			@Html.EditorFor(m => m.MobileNumber, Model.MobileNumber)
+		</fieldset>
+	</div>
+</div>

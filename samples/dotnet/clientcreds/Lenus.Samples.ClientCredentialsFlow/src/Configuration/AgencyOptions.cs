@@ -6,5 +6,6 @@
         public string InviteApiPath { get; set; } = "/createagencyinvite";
         public string BrowserRedirectPath { get; set; } = "/Patient/Redirect";
         public string ClientNotifyPath { get; set; } = "/Agency/Complete";
+        public string OrganisationId { get; set; } = string.Empty;
     }
 }
