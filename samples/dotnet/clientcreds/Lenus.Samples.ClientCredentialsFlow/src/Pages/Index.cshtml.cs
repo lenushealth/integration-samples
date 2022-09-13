@@ -14,20 +14,20 @@ namespace Lenus.Samples.ClientCredentialsFlow.Pages
         {
             [EmailAddress]
             [Display(Name = "Patient Email Address", Description = "(Optional) This is the email address to which the agency request invitation email is sent", Prompt = "patient@lenushealth.com")]
-            public string EmailAddress { get; set; }
+            public string EmailAddress { get; set; } = String.Empty;
 
             [Phone]
             [Display(Name = "Patient Mobile Number", Description = "(Optional) This is the mobile number to which the agency request invitation SMS is sent", Prompt = "+44111222333444")]
-            public string MobileNumber { get; set; }
+            public string MobileNumber { get; set; } = String.Empty;
 
             [DataType(DataType.MultilineText)]
             [Display(Name = "Requested health data scopes", Description = "Specify the read and/or write scopes you want the user to consent access to, e.g. read.step_count, read.heart_rate", Prompt = "read.step_count")]
             [Required]
-            public string? Scopes { get; set; }
+            public string Scopes { get; set; } = String.Empty;
 
-            [DataType("OrganisationSelect")]
+            [DataType("OrganisationId")]
             [Display(Name = "Organisation", Description = "(Optional) If a known organisation reference is supplied then the consent request will be made on behalf of the organisation, otherwise consent is requested only for the individual agent", Prompt = "00000000-0000-0000-0000-000000000000")]
-            public string OrganisationId { get; set; }
+            public string OrganisationId { get; set; } = String.Empty;
 
             [ScaffoldColumn(false)]
             public IEnumerable<string> ScopesList => Scopes?.Split(Environment.NewLine) ?? Enumerable.Empty<string>();
@@ -42,21 +42,25 @@ namespace Lenus.Samples.ClientCredentialsFlow.Pages
         }
 
         [BindProperty]
+        [UIHint("Form")]
         public Model Form { get; set; } = new Model();
 
+        [ScaffoldColumn(false)]
         public bool Submitted { get; set; } = false;
 
         private readonly IAgencyInviteService agencyInviteService;
         private readonly IOptions<AgencyOptions> agencyOptions;
+        private readonly ILogger<IndexModel> logger;
 
-        public IndexModel(IAgencyInviteService agencyInviteService, IOptions<AgencyOptions> agencyOptions)
+        public IndexModel(IAgencyInviteService agencyInviteService, IOptions<AgencyOptions> agencyOptions, ILogger<IndexModel> logger)
         {
             this.agencyInviteService = agencyInviteService;
             this.agencyOptions = agencyOptions;
+            this.logger = logger;
         }
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            return Page();
+           
         }
 
         public async Task OnPostAsync(CancellationToken cancellationToken)
@@ -71,7 +75,7 @@ namespace Lenus.Samples.ClientCredentialsFlow.Pages
                 }
                 else
                 {
-                    var message = response.ReasonPhrase;
+                    logger.LogError($"Send agency invite returned not successful status code: {response.ReasonPhrase}");
                 }
             }
         }
