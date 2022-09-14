@@ -15,6 +15,7 @@ The following samples are available:
 - [Clinician sample](https://github.com/lenushealth/integration-samples/tree/main/samples/dotnet/clinician) - Request agency for other users and display their data samples
 - [Clinician organisation consent sample](https://github.com/lenushealth/integration-samples/tree/main/samples/dotnet/clinorg) - Demonstrates usage of the organisations and agency API to request agency on behalf on an organisation
 - [Blood pressure sample](https://github.com/lenushealth/integration-samples/tree/main/samples/dotnet/mybp) - Retrieve and submit blood pressure samples
+- [Client Credentials flow sample](https://github.com/lenushealth/integration-samples/tree/main/samples/dotnet/clientcreds) - Demonstrates usage of `client_credentials` to authenticate agency API calls without manually inputting credentials. It requests agency on behalf of an organisation enabled for the client. Organsation management is handled by Lenus support.
 
 ## Utils
 
