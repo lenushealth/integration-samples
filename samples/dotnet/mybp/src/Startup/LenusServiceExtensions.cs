@@ -1,26 +1,20 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using MyBp.Client;
+using MyBp.Config;
+using MyBp.Services;
 using Polly;
+using Refit;
+using System;
+using System.Threading.Tasks;
 
-namespace MyBp
+namespace MyBp.Startup
 {
-    using System.Globalization;
-    using System.Threading.Tasks;
-    using Client;
-    using Config;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.AspNetCore.Authentication.Cookies;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Localization;
-    using Refit;
-    using Services;
-    using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-    using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-    using Microsoft.Extensions.Hosting;
-
-    public static class LenusAuthenticationExtensions 
+    public static class LenusServiceExtensions
     {
         public static IServiceCollection AddLenusAuthentication(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
@@ -43,12 +37,12 @@ namespace MyBp
                     o.SaveTokens = true;
                     /* match token and cookie lifetime */
                     o.UseTokenLifetime = true;
-                    
+
                     o.GetClaimsFromUserInfoEndpoint = true;
-                    
+
                     /* use the hybrid flow */
                     o.ResponseType = OpenIdConnectResponseType.CodeIdToken;
-                    
+
                     o.Events.OnRemoteFailure += ctx =>
                     {
                         ctx.Response.Redirect($"/?error={ctx?.Failure?.Message}");
@@ -74,8 +68,7 @@ namespace MyBp
                     o.Scope.Add("write.blood_pressure");
                     o.Scope.Add("write.blood_pressure.blood_pressure_systolic");
                     o.Scope.Add("write.blood_pressure.blood_pressure_diastolic");
-                })
-                ;
+                });
 
             return serviceCollection;
         }
@@ -111,64 +104,6 @@ namespace MyBp
             );
 
             return serviceCollection;
-        }
-    }
-
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddLocalization();
-            services.AddMvc();
-
-            services.AddLenusAuthentication(Configuration);
-            services.AddLenusAuthorisation();
-            services.AddLenusHealthClient(Configuration);
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-            }
-
-            app.UseStaticFiles();
-
-            app.UseAuthentication();
-
-            var gbCulture = CultureInfo.GetCultureInfo("en-GB");
-            app.UseRequestLocalization(
-                new RequestLocalizationOptions()
-                {
-                    DefaultRequestCulture = new RequestCulture(gbCulture),
-                    SupportedCultures = new[] { gbCulture },
-                    SupportedUICultures = new[] { gbCulture }
-                });
-
-            app.UseRequestLocalization();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(e =>
-            {
-                e.MapDefaultControllerRoute();
-            });
         }
     }
 }

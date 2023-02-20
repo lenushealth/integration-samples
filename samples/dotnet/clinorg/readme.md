@@ -4,7 +4,7 @@ Sample implementation of the Lenus Health platform demonstrating use of the agen
 
 ## Requirements
 
-- .NET core 3.1 SDK
+- .NET core 7.0 SDK
 - Visual Studio 2019 or Visual Studio Code
 - Access to an instance of the Lenus Health platform
 - Access to register a new client application for use with this sample
