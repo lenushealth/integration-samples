@@ -32,7 +32,7 @@ namespace Lenus.Samples.ClinicianOrg.Services
             response.EnsureSuccessStatusCode();
             var streamContent = await response.Content.ReadAsStreamAsync();
             var memberships = await JsonSerializer.DeserializeAsync<IEnumerable<LenusOrganisationalMembership>>(streamContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            return memberships;
+            return memberships ?? new List<LenusOrganisationalMembership>();
         }
     }
 }

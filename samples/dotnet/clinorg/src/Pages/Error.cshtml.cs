@@ -18,7 +18,7 @@ namespace Lenus.Samples.ClinicianOrg.Pages
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
         [BindProperty(SupportsGet = true)]
-        public string Message { get; set; }
+        public string Message { get; set; } = string.Empty;
 
         private readonly ILogger<ErrorModel> _logger;
 
